@@ -225,7 +225,6 @@ This project is provided as-is for educational and research purposes.
 
 - **Qwen Team** for the Qwen2.5-Omni model
 - **Hugging Face** for Transformers, PEFT, and bitsandbytes
-- **Reddit r/LocalLLaMA** community for feedback and support
 
 ### 📧 Contact
 
@@ -453,7 +452,6 @@ Ce projet est fourni tel quel à des fins éducatives et de recherche.
 
 - **Équipe Qwen** pour le modèle Qwen2.5-Omni
 - **Hugging Face** pour Transformers, PEFT et bitsandbytes
-- **Communauté Reddit r/LocalLLaMA** pour les retours et le soutien
 
 ### 📧 Contact
 
@@ -681,7 +679,6 @@ Questo progetto è fornito così com'è per scopi educativi e di ricerca.
 
 - **Team Qwen** per il modello Qwen2.5-Omni
 - **Hugging Face** per Transformers, PEFT e bitsandbytes
-- **Comunità Reddit r/LocalLLaMA** per feedback e supporto
 
 ### 📧 Contatto
 
