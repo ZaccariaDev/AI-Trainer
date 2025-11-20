@@ -1,4 +1,4 @@
-# AITrainer - Fine-tuning Qwen2.5-Omni while Preserving Multimodal Capabilities
+# AITrainer - Fine-tuning Multimodal Models while Preserving All Capabilities
 
 [English](#english) | [Français](#français) | [Italiano](#italiano)
 
@@ -8,18 +8,22 @@
 
 ### Overview
 
-**AITrainer** is a project dedicated to fine-tuning the **Qwen2.5-Omni-3B** multimodal model while **preserving its complete multimodal capabilities** (audio, vision, video). This is achieved through a custom wrapper approach that works around the architectural limitations of the Omni model.
+**AITrainer** is a flexible fine-tuning framework for **multimodal language models** that **preserves their complete capabilities** (audio, vision, video, text). Originally designed for Qwen2.5-Omni-3B, the custom wrapper approach can be adapted to other multimodal architectures that don't work with standard fine-tuning tools.
 
-The main challenge: Standard fine-tuning tools like `SFTTrainer` don't work with Qwen2.5-Omni's unusual architecture (Thinker + Talker + multimodal encoders). This project provides a working solution.
+**Primary Use Case:** Qwen2.5-Omni-3B (tested and working)
+**Adaptable to:** Other multimodal models with complex architectures or non-standard forward() implementations
+
+The main challenge: Standard fine-tuning tools like `SFTTrainer` don't work with certain multimodal architectures. This project provides a working solution using custom wrappers and targeted LoRA application.
 
 ### 🌟 Key Features
 
-- ✅ **Preserves multimodal capabilities** (audio, vision, video)
-- ✅ **QLoRA fine-tuning** with 4-bit quantization (~7.5GB VRAM on RTX 3080)
-- ✅ **Custom wrapper** exposing `forward()` method for training
-- ✅ **Only 0.87% of parameters trained** (41M out of 4.7B)
+- ✅ **Preserves multimodal capabilities** (audio, vision, video, text)
+- ✅ **Adaptable custom wrapper approach** for complex model architectures
+- ✅ **QLoRA fine-tuning** with 4-bit quantization (~7.5GB VRAM)
+- ✅ **Efficient training** - only 0.87% of parameters trained (41M out of 4.7B on Qwen)
 - ✅ **Docker environment** with CUDA 12.3.2 and PyTorch 2.6
-- ✅ **FastAPI server** for inference with LoRA adapters
+- ✅ **FastAPI inference server** with LoRA adapter loading
+- ✅ **Works with safetensors** format for model weights
 
 ### 📁 Project Structure
 
@@ -44,12 +48,12 @@ AITrainer/
 
 #### The Problem
 
-Qwen2.5-Omni has an unusual architecture:
-- `Qwen2_5OmniForConditionalGeneration` contains:
-  - **Thinker**: The language model component
-  - **Talker**: Speech synthesis component
-  - **Multimodal encoders**: Vision, audio, video processors
-- Standard `SFTTrainer` fails because `forward()` is not properly implemented
+Many multimodal models have complex architectures that break standard fine-tuning tools:
+- **Example: Qwen2.5-Omni** has `Thinker` (language model) + `Talker` (speech) + multimodal encoders
+- **Common issue:** `forward()` method not properly exposed or implemented
+- **Result:** Standard `SFTTrainer` and similar tools fail
+
+This framework solves these issues with a flexible approach that can be adapted to different architectures.
 
 #### The Solution
 
@@ -233,9 +237,12 @@ For questions or discussions, feel free to open an issue on GitHub.
 
 ### Aperçu
 
-**AITrainer** est un projet dédié au fine-tuning du modèle multimodal **Qwen2.5-Omni-3B** tout en **préservant ses capacités multimodales complètes** (audio, vision, vidéo). Cela est réalisé grâce à une approche de wrapper personnalisé qui contourne les limitations architecturales du modèle Omni.
+**AITrainer** est un framework flexible de fine-tuning pour **modèles de langage multimodaux** qui **préserve toutes leurs capacités** (audio, vision, vidéo, texte). Conçu initialement pour Qwen2.5-Omni-3B, l'approche de wrapper personnalisé peut être adaptée à d'autres architectures multimodales qui ne fonctionnent pas avec les outils standards.
 
-Le défi principal : Les outils de fine-tuning standard comme `SFTTrainer` ne fonctionnent pas avec l'architecture inhabituelle de Qwen2.5-Omni (Thinker + Talker + encodeurs multimodaux). Ce projet fournit une solution fonctionnelle.
+**Cas d'usage principal:** Qwen2.5-Omni-3B (testé et fonctionnel)
+**Adaptable à:** Autres modèles multimodaux avec architectures complexes ou implémentations forward() non-standard
+
+Le défi principal : Les outils de fine-tuning standard comme `SFTTrainer` ne fonctionnent pas avec certaines architectures multimodales. Ce projet fournit une solution fonctionnelle utilisant des wrappers personnalisés et l'application ciblée de LoRA.
 
 ### 🌟 Caractéristiques Principales
 
@@ -458,9 +465,12 @@ Pour des questions ou discussions, n'hésitez pas à ouvrir une issue sur GitHub
 
 ### Panoramica
 
-**AITrainer** è un progetto dedicato al fine-tuning del modello multimodale **Qwen2.5-Omni-3B** preservando le sue **capacità multimodali complete** (audio, visione, video). Questo è ottenuto attraverso un approccio wrapper personalizzato che aggira le limitazioni architetturali del modello Omni.
+**AITrainer** è un framework flessibile di fine-tuning per **modelli linguistici multimodali** che **preserva tutte le loro capacità** (audio, visione, video, testo). Originariamente progettato per Qwen2.5-Omni-3B, l'approccio wrapper personalizzato può essere adattato ad altre architetture multimodali che non funzionano con strumenti standard.
 
-La sfida principale: Gli strumenti di fine-tuning standard come `SFTTrainer` non funzionano con l'architettura insolita di Qwen2.5-Omni (Thinker + Talker + encoder multimodali). Questo progetto fornisce una soluzione funzionante.
+**Caso d'uso principale:** Qwen2.5-Omni-3B (testato e funzionante)
+**Adattabile a:** Altri modelli multimodali con architetture complesse o implementazioni forward() non-standard
+
+La sfida principale: Gli strumenti di fine-tuning standard come `SFTTrainer` non funzionano con certe architetture multimodali. Questo progetto fornisce una soluzione funzionante utilizzando wrapper personalizzati e applicazione mirata di LoRA.
 
 ### 🌟 Caratteristiche Principali
 
